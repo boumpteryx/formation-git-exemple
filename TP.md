@@ -17,7 +17,7 @@ Allez sur https://git-scm.com/download/win
 
 ### Sur Linux (Ubuntu/Debian)
 ``` bash
-$ sudo apt-get install git
+sudo apt-get install git
 ```
 
 ## Sujet
@@ -30,7 +30,7 @@ git config --global user.name "Prénom Nom"
 git config --global push.default simple
 ```
 
-Forker le répo en cliquant ![ici](https://github.com/KIClubinfo/formation-git-exemple/fork)
+Forker le répo en cliquant [ici](https://github.com/KIClubinfo/formation-git-exemple/fork)
 
 ### 1. Cloner le dépôt
 ``` bash
@@ -69,4 +69,47 @@ Jusqu'à présent, tout ce que vous avez fait est sur votre système local et in
 ``` bash
 # Pousser le nouveau commit
 git push
+```
+
+### 3. Gérer un conflit
+
+```bash
+# On fusionne une branche dans master
+git merge merge-me-please
+# On fait une pause et on regarde ce qui vient de se passer
+git status
+cat merge.txt
+# On modifie le fichier à sa guise puis on l'ajoute
+git add merge.txt
+# On finit la résolution de conflit en committant
+git commit
+```
+
+En cas de panique, on peut toujours annuler le merge en faisant `git merge --abort` !
+
+### 4. Jongler avec les branches
+
+```bash
+# On crée une nouvelle branche et on va dessus
+git checkout -b ma-premiere-branche
+# On crée un fichier
+echo "ma-premiere-branche" > branche.txt
+# On l'ajoute et on commit
+git add branche.txt
+git commit -m "Création de ma première branche"
+# On la pousse sur le serveur ?
+git push
+# On la pousse sur le serveur !
+# C'est un peu pénible mais c'est nécessaire à chaque fois qu'on veut pusher une branche nouvellement créée
+git push --set-upstream origin ma-premiere-branche
+```
+
+Ma nouvelle branch est visible ici : https://github.com/MonNomDUtilisateurGithub/formation-git-exemple/tree/ma-premiere-branche/
+
+``` bash
+# On peut retourner sur master
+git checkout master
+# Le fichier branche.txt a disparu
+git checkout ma-premiere-branche
+# Le fichier branche.txt est de retour !
 ```
